@@ -1,9 +1,9 @@
 ---
 layout: runbook
-title: '#4471: two date problems merged into one ticket'
+title: '#4471 · two date problems merged into one ticket'
 owner: przemuh
 status: resolved
-reviewed: '2026-10-28'
+reviewed: 2026-10-28
 signature: przemuh
 ---
 
@@ -12,64 +12,47 @@ signature: przemuh
   import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
   import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
-  import ReviewSummary from '#lib/kb/ReviewSummary.svelte';
   import Callout from '#lib/kb/Callout.svelte';
 </script>
 
-The original incident record grouped the reports as one known issue. Its rendered evidence shows two independent date problems: a shared parser problem and a booking-form hint problem.
-The counts below describe the supplied export. The subsequent engineering update reports the parser fixed and the hint issue closed without a fix because booking-v3 was retired.
+The support desk merged 412 distinct reports into #4471. The exported evidence shows two independent date problems, not one.
 
 <Callout kind="warn">
 Triage by tenant configuration and entry channel, then verify symptoms. Matching subject lines alone is insufficient.
 </Callout>
 
-## Engineering update: 5 October
-
-- Parser: **fixed** — `fix(dates): parse dd/mm for eu locales`. [GitHub issue #1](https://github.com/przemuh/mega-dev-kb/issues/1) is completed.
-- Hint: **won’t fix** — booking-v3 form retired. [GitHub issue #2](https://github.com/przemuh/mega-dev-kb/issues/2) is not planned.
-
-These are the desk’s reported resolutions, not production changes made in this repository. The original export and its report counts remain historical evidence.
-
-## Count the reports, not export rows or intake guesses
-
-<ReviewSummary />
-
-<CauseTable ticket={4471} />
-
-The table describes ownership in the exported support system. The separate GitHub tickets track this review; creating them does not rewrite the export.
-
-## Problems and separate tickets
+## The separate problems
 
 ### Shared parser reads month first
 
-[GitHub issue #1](https://github.com/przemuh/mega-dev-kb/issues/1) covers **379 distinct reports**.
+[GitHub issue #1](https://github.com/przemuh/mega-dev-kb/issues/1) covers **379 reports**.
+The shared date parser reads month/day when day-first tenants supply dates. App and email reports from day-first tenants, along with booking-v2 form reports, belong here.
 
-The shared parser assumes month/day even when the tenant's locale is day-first. The supplied classifier assigns app and email reports from day-first tenants here, along with form reports using booking-v2.
+The 5 October engineering update says this parser problem was fixed: `fix(dates): parse dd/mm for eu locales`. Issue #1 is closed as completed.
 
 ### booking-v3 date hint conflicts with tenant locale
 
-[GitHub issue #2](https://github.com/przemuh/mega-dev-kb/issues/2) covers **33 distinct reports**.
+[GitHub issue #2](https://github.com/przemuh/mega-dev-kb/issues/2) covers **33 reports**.
+booking-v3 shows an MM/DD/YYYY hint while parsing input with the tenant's day-first order. App and email reports from the same tenants remain parser reports.
 
-The booking-v3 form prints MM/DD/YYYY for day-first tenants, but reads the entered value using the tenant's day-first order. App and email reports from those tenants still belong to the parser group; tenant identity alone is insufficient.
+The 5 October engineering update says booking-v3 was retired. Issue #2 is closed as not planned; the hint itself was not repaired.
 
-Ticket links and report-ID membership are recorded in the repository's evidence directory. Counts are computed from the current local data at render time.
+## Evidence
+
+<CauseTable ticket={4471} />
+
+The table counts reports by the supplied classifier, after deduplicating export rows by report ID. The five one-day observations remain within the parser count; they are not a third confirmed problem.
 
 ## Arrival time is different from merge time
 
 <QueueTimeline ticket={4471} />
 
-The received series describes when reports reached the desk. The merged series describes when the desk put them into this ticket. The July merge spike is not the incident's onset or a sudden rise in affected users.
+Reports reached the desk from April onward. The July merge spike records triage work, not the start of the incident.
 
-## Why the old triage guidance is unsafe
-
-[Decision 0001](/kb/decisions/0001-dedupe-by-subject) and the [triage page](/kb/triage/dedupe) were last reviewed in June 2024. Their rendered stale banners matter: accepted status does not make their subject-only rule current.
+## Triage consequence
 
 <DedupeExplorer />
 
-The explorer shows that identical subjects can describe different causes, and different subjects can describe the same cause. Unknown tenants require investigation.
-
-## Evidence and refresh procedure
-
-The analysis uses `uniqueById`, `groupByCause`, `causeOf`, and the tenant directory from this export. When the desk supplies an update, recompute report membership, update the corresponding GitHub issues, and rebuild this page.
+Identical subjects can describe different causes, and different subjects can describe the same cause. The desk must classify by tenant configuration and channel, not subject alone.
 
 <RenderStamp {signature} />

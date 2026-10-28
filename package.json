@@ -1,6 +1,0 @@
-{
-  "name": "mega-dev-kb", "private": true, "type": "module",
-  "scripts": {"dev": "vite --host 127.0.0.1", "build": "vite build && node scripts/render.mjs", "analyze": "node scripts/analyze.mjs"},
-  "dependencies": {"svelte": "^5.0.0"},
-  "devDependencies": {"@sveltejs/vite-plugin-svelte": "^6.0.0", "mdsvex": "^0.12.6", "vite": "^7.0.0"}
-}
