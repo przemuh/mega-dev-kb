@@ -4,10 +4,11 @@ The course export groups two independent date problems into one support ticket.
 
 ## Submission
 
-- Authored page: [4471-review.svx](submission/4471-review.svx)
-- Rendered page: [4471-review.html](submission/4471-review.html)
+- Authored page: [page.svx](page.svx)
+- Page as the desk will see it: [page.html](page.html) — download and open directly; CSS, JavaScript, computed content, and signature are embedded.
+- [Browser screenshot](submission/4471-review.png)
 
-These deliverable copies are generated from the canonical source and render on every build; use the reproduction steps below to serve the page with its assets.
+These deliverables are generated from the canonical source and render on every build. The standalone HTML needs no server or external assets; the full KB remains available through the reproduction steps below.
 
 - [Parser issue #1](https://github.com/przemuh/mega-dev-kb/issues/1): 379 distinct reports.
 - [Form hint issue #2](https://github.com/przemuh/mega-dev-kb/issues/2): 33 distinct reports.

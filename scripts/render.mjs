@@ -14,7 +14,18 @@ try {
     if (routeOf(path) === '/kb/incidents/4471-review') {
       await fs.mkdir('submission', { recursive: true });
       await fs.copyFile('src/routes/kb/incidents/4471-review/+page.svx', 'submission/4471-review.svx');
-      await fs.writeFile('submission/4471-review.html', html);
+      await fs.copyFile('src/routes/kb/incidents/4471-review/+page.svx', 'page.svx');
+      let standalone = html.replace('<div id="app">', '<div id="app" data-route="/kb/incidents/4471-review">');
+      for (const match of [...standalone.matchAll(/<link[^>]*href="(\/assets\/[^"]+\.css)"[^>]*>/g)]) {
+        const css = await fs.readFile('rendered'+match[1], 'utf8');
+        standalone = standalone.replace(match[0], `<style>${css}</style>`);
+      }
+      for (const match of [...standalone.matchAll(/<script[^>]*src="(\/assets\/[^"]+\.js)"[^>]*><\/script>/g)]) {
+        const js = await fs.readFile('rendered'+match[1], 'utf8');
+        standalone = standalone.replace(match[0], `<script type="module">${js.replaceAll('</script', '<\\/script')}</script>`);
+      }
+      await fs.writeFile('page.html', standalone);
+      await fs.writeFile('submission/4471-review.html', standalone);
     }
     console.log(`Rendered ${routeOf(path)}`);
   }
