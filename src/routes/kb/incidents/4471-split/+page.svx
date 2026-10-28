@@ -4,7 +4,7 @@ title: '#4471 · split by problem'
 owner: przemuh
 status: open
 reviewed: 2026-10-28
-signature: przemuh
+signature: v1.eyJzdWIiOiIxNDA2IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMxNzg4ODMsImV4cCI6MTc5MzI2NTI4M30.rxiw3fInjp91hFvxKMhFV1B526qmGCnKS38dXjqPVP0
 ---
 
 <script>
