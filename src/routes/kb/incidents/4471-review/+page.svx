@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 review: two date problems merged into one ticket'
 owner: przemuh
-status: reviewed
+status: resolved
 reviewed: '2026-10-28'
 signature: 'przemuh / Codex / what-it-shows / 2026-10-28'
 ---
@@ -18,11 +18,20 @@ signature: 'przemuh / Codex / what-it-shows / 2026-10-28'
 
 The original [incident page](/kb/incidents/4471) says one known issue has one fix queued.
 Its own rendered evidence contradicts that conclusion: the ticket combines a shared parser problem and a separate booking-form hint problem.
-This review applies to the supplied export; it does not claim either production bug is fixed.
+The counts below describe the supplied export. The subsequent engineering update reports the parser fixed and the hint issue closed without a fix because booking-v3 was retired.
 
 <Callout kind="warn">
 Triage by tenant configuration and entry channel, then verify symptoms. Matching subject lines alone is insufficient.
 </Callout>
+
+## Engineering update: 5 October
+
+The [course desk update](https://hq.mega.dev/challenges/what-it-shows) reports #4471 closed on 5 October.
+
+- Parser: **fixed** — fix(dates): parse dd/mm for eu locales. GitHub issue #1 is completed.
+- Hint: **won’t fix** — booking-v3 form retired. GitHub issue #2 is not planned; the hint was not repaired.
+
+These are the desk’s reported resolutions, not production changes made in this repository. The original export and its report counts remain historical evidence. The one-day observations remain unexplained by this update.
 
 ## Count the reports, not export rows or intake guesses
 

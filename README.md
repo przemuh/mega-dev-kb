@@ -10,6 +10,10 @@ The course export groups two independent date problems into one support ticket.
 
 Five one-day observations remain within the parser count under the supplied classifier; they need follow-up, not an invented third diagnosis. The original accepted decision remains intact.
 
+## Desk resolution
+
+The 5 October engineering update reports the parser fixed (issue #1: completed) and the hint closed without a fix because booking-v3 was retired (issue #2: not planned). Historical counts and unresolved observations remain visible.
+
 ## Reproduce
 
 Requires Node.js 22.12+ (validated with Node 24).
