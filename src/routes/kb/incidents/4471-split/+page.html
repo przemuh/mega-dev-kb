@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="kb-signature" content="v1.eyJzdWIiOiIxNDA2IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMxNzg4ODMsImV4cCI6MTc5MzI2NTI4M30.rxiw3fInjp91hFvxKMhFV1B526qmGCnKS38dXjqPVP0">
+    <title>#4471 · split by problem · support kb</title>
+    <style>
+      body { max-width: 52rem; margin: 3rem auto; padding: 0 1.25rem; color: #172033; font: 16px/1.55 system-ui, sans-serif; }
+      h1, h2 { line-height: 1.2; } .meta, .stamp { color: #5d6677; } .notice { border-left: 4px solid #b45309; background: #fff7ed; padding: 1rem; }
+      table { border-collapse: collapse; width: 100%; } th, td { border: 1px solid #d9deea; padding: .6rem; text-align: left; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <p class="meta">support desk · kb</p>
+      <h1>#4471 · split by problem</h1>
+      <p class="meta">owner <strong>przemuh</strong> · status <strong>open</strong> · reviewed 2026-10-28</p>
+    </header>
+    <main>
+      <p>The support desk merged 412 distinct reports into #4471. The exported evidence shows three independent problems, not one.</p>
+      <p class="notice">Triage by tenant configuration and entry channel, then verify symptoms. Matching subject lines alone is insufficient.</p>
+
+      <h2>Problems and tickets</h2>
+      <table>
+        <thead><tr><th>problem</th><th>reports</th><th>GitHub ticket</th><th>disposition</th></tr></thead>
+        <tbody>
+          <tr><td>Shared parser reads month first for day-first tenants</td><td>379</td><td><a href="https://github.com/przemuh/mega-dev-kb/issues/1">#1</a></td><td>completed — parser fixed 5 October</td></tr>
+          <tr><td>booking-v3 hint conflicts with tenant locale</td><td>33</td><td><a href="https://github.com/przemuh/mega-dev-kb/issues/2">#2</a></td><td>not planned — booking-v3 retired</td></tr>
+          <tr><td>One-day date moves</td><td>5</td><td><a href="https://github.com/przemuh/mega-dev-kb/issues/3">#3</a></td><td>open — investigate timestamps, timezones, and date-only conversion</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Evidence</h2>
+      <p>The export has 427 rows and 412 distinct report IDs. Five one-day reports (R-41202, R-41209, R-41236, R-41344, and R-41620) remain within the historical parser total for counting, but need their own investigation.</p>
+      <p>Reports arrived from April onward. The July merge spike represents desk triage work, not the incident's onset.</p>
+      <p>Identical subjects can describe different causes, and different subjects can describe the same cause. The desk must classify by tenant configuration and channel, not subject alone.</p>
+    </main>
+    <footer><p class="stamp">desk ref <strong>DR-X804-AWYF</strong></p></footer>
+  </body>
+</html>
