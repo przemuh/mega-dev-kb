@@ -1,58 +1,36 @@
 ---
 layout: runbook
-title: '#4471 · two date problems merged into one ticket'
-owner: przemuh
-status: resolved
-reviewed: 2026-10-28
-signature: przemuh
+title: '#4471 · dates parse mm/dd in eu locales'
+owner: support desk
+status: known
+reviewed: 2026-09-30
 ---
 
 <script>
   import CauseTable from '#lib/kb/CauseTable.svelte';
   import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
-  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
-  import RenderStamp from '#lib/kb/RenderStamp.svelte';
   import Callout from '#lib/kb/Callout.svelte';
 </script>
 
-The support desk merged 412 distinct reports into #4471. The exported evidence shows two independent date problems, not one.
+Since April, people have told us their bookings land on the wrong day: a month flipped. By
+4 October the desk had **412 reports**.
 
-<Callout kind="warn">
-Triage by tenant configuration and entry channel, then verify symptoms. Matching subject lines alone is insufficient.
+**Merged as one issue.** The parser reads dates month first, and our tenants write the day
+first. The fix is queued.
+
+<Callout>
+Known. One issue, one fix queued.
 </Callout>
 
-## The separate problems
-
-### Shared parser reads month first
-
-[GitHub issue #1](https://github.com/przemuh/mega-dev-kb/issues/1) covers **379 reports**.
-The shared date parser reads month/day when day-first tenants supply dates. App and email reports from day-first tenants, along with booking-v2 form reports, belong here.
-
-The 5 October engineering update says this parser problem was fixed: `fix(dates): parse dd/mm for eu locales`. Issue #1 is closed as completed.
-
-### booking-v3 date hint conflicts with tenant locale
-
-[GitHub issue #2](https://github.com/przemuh/mega-dev-kb/issues/2) covers **33 reports**.
-booking-v3 shows an MM/DD/YYYY hint while parsing input with the tenant's day-first order. App and email reports from the same tenants remain parser reports.
-
-The 5 October engineering update says booking-v3 was retired. Issue #2 is closed as not planned; the hint itself was not repaired.
-
-## Evidence
+## What was merged
 
 <CauseTable ticket={4471} />
 
-The table counts reports by the supplied classifier, after deduplicating export rows by report ID. The five one-day observations remain within the parser count; they are not a third confirmed problem.
-
-## Arrival time is different from merge time
+## Since April
 
 <QueueTimeline ticket={4471} />
 
-Reports reached the desk from April onward. The July merge spike records triage work, not the start of the incident.
+## Lessons
 
-## Triage consequence
-
-<DedupeExplorer />
-
-Identical subjects can describe different causes, and different subjects can describe the same cause. The desk must classify by tenant configuration and channel, not subject alone.
-
-<RenderStamp {signature} />
+- A big ticket is mostly one bug reported many times. Merge early, count once.
+- Write the page while the queue is still in your head.
