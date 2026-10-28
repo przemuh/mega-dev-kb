@@ -1,8 +1,8 @@
 ---
 layout: runbook
-title: '#4471 review · two date problems'
+title: '#4471 · split by problem'
 owner: przemuh
-status: resolved
+status: open
 reviewed: 2026-10-28
 signature: przemuh
 ---
@@ -15,7 +15,7 @@ signature: przemuh
   import Callout from '#lib/kb/Callout.svelte';
 </script>
 
-The support desk merged 412 distinct reports into #4471. The exported evidence shows two independent date problems, not one.
+The support desk merged 412 distinct reports into #4471. The exported evidence shows three independent problems, not one.
 
 <Callout kind="warn">
 Triage by tenant configuration and entry channel, then verify symptoms. Matching subject lines alone is insufficient.
@@ -37,11 +37,18 @@ booking-v3 shows an MM/DD/YYYY hint while parsing input with the tenant's day-fi
 
 The 5 October engineering update says booking-v3 was retired. Issue #2 is closed as not planned; the hint itself was not repaired.
 
+### One-day date moves need investigation
+
+[GitHub issue #3](https://github.com/przemuh/mega-dev-kb/issues/3) covers **5 reports**: R-41202, R-41209, R-41236, R-41344, and R-41620.
+Each describes a date moving by one day. A month/day swap cannot cause a one-day shift. The tenant-and-channel classifier files these reports under parser, so they remain in the historical parser count of 379, but the desk notes identify them as a separate observation.
+
+The parser fix does not explain these reports. Keep issue #3 open while investigating original timestamps, timezone handling, date-only conversion, and the day boundary.
+
 ## Evidence
 
 <CauseTable ticket={4471} />
 
-The table counts reports by the supplied classifier, after deduplicating export rows by report ID. The five one-day observations remain within the parser count; they are not a third confirmed problem.
+The table counts reports by the supplied classifier, after deduplicating export rows by report ID. The five one-day reports remain in the parser total for historical counting, but they require their own investigation ticket.
 
 ## Arrival time is different from merge time
 
