@@ -11,6 +11,11 @@ try {
     const dest = `rendered${routeOf(path)}`;
     await fs.mkdir(dest, { recursive: true });
     await fs.writeFile(`${dest}/index.html`, html);
+    if (routeOf(path) === '/kb/incidents/4471-review') {
+      await fs.mkdir('submission', { recursive: true });
+      await fs.copyFile('src/routes/kb/incidents/4471-review/+page.svx', 'submission/4471-review.svx');
+      await fs.writeFile('submission/4471-review.html', html);
+    }
     console.log(`Rendered ${routeOf(path)}`);
   }
 } finally { await server.close(); }

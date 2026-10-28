@@ -2,6 +2,13 @@
 
 The course export groups two independent date problems into one support ticket.
 
+## Submission
+
+- Authored page: [4471-review.svx](submission/4471-review.svx)
+- Rendered page: [4471-review.html](submission/4471-review.html)
+
+These deliverable copies are generated from the canonical source and render on every build; use the reproduction steps below to serve the page with its assets.
+
 - [Parser issue #1](https://github.com/przemuh/mega-dev-kb/issues/1): 379 distinct reports.
 - [Form hint issue #2](https://github.com/przemuh/mega-dev-kb/issues/2): 33 distinct reports.
 - [Signed review source](src/routes/kb/incidents/4471-review/+page.svx).
