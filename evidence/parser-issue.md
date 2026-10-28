@@ -1,3 +1,9 @@
+## Knowledge-base page
+
+- [Signed SVX source](https://github.com/przemuh/mega-dev-kb/blob/main/page.svx)
+- [Rendered page](https://github.com/przemuh/mega-dev-kb/blob/main/page.html)
+- [Rendered page screenshot](https://github.com/przemuh/mega-dev-kb/blob/main/submission/4471-review.png)
+
 ## Problem
 
 The shared date parser reads month/day when the tenant writes day/month. App/email reports and booking-v2 form reports from day-first tenants are assigned here.

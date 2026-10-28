@@ -1,3 +1,9 @@
+## Knowledge-base page
+
+- [Signed SVX source](https://github.com/przemuh/mega-dev-kb/blob/main/page.svx)
+- [Rendered page](https://github.com/przemuh/mega-dev-kb/blob/main/page.html)
+- [Rendered page screenshot](https://github.com/przemuh/mega-dev-kb/blob/main/submission/4471-review.png)
+
 ## Problem
 
 The booking-v3 form prints MM/DD/YYYY while parsing the input using the tenant day-first locale. People following the visible hint can get a swapped date. This affects form reports for Alder Physio, Copper Studio, and Pale Harbour; app/email reports for the same tenants remain parser reports.

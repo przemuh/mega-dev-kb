@@ -4,8 +4,8 @@ The course export groups two independent date problems into one support ticket.
 
 ## Submission
 
-- Authored page: [page.svx](page.svx)
-- Page as the desk will see it: [page.html](page.html) — download and open directly; CSS, JavaScript, computed content, and signature are embedded.
+- Authored page: [page.svx](https://github.com/przemuh/mega-dev-kb/blob/main/page.svx)
+- Page as the desk will see it: [page.html](https://github.com/przemuh/mega-dev-kb/blob/main/page.html) — download and open directly; CSS, JavaScript, computed content, and signature are embedded.
 - [Browser screenshot](submission/4471-review.png)
 
 These deliverables are generated from the canonical source and render on every build. The standalone HTML needs no server or external assets; the full KB remains available through the reproduction steps below.
