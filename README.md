@@ -13,7 +13,7 @@ These deliverables are generated from the canonical source and render on every b
 - [Parser issue #1](https://github.com/przemuh/mega-dev-kb/issues/1): 379 distinct reports.
 - [Form hint issue #2](https://github.com/przemuh/mega-dev-kb/issues/2): 33 distinct reports.
 - [Signed review source](src/routes/kb/incidents/4471-review/+page.svx).
-- [Rendered review HTML](rendered/kb/incidents/4471-review/index.html), generated from the actual Svelte/mdsvex components.
+- [Rendered review HTML](docs/kb/incidents/4471-review/index.html), generated from the actual Svelte/mdsvex components.
 - [Computed evidence and report memberships](evidence/analysis.json).
 
 Five one-day observations remain within the parser count under the supplied classifier; they need follow-up, not an invented third diagnosis. The original accepted decision remains intact.
@@ -30,7 +30,7 @@ Requires Node.js 22.12+ (validated with Node 24).
 npm ci
 npm run analyze
 npm run build
-python3 -m http.server 4831 --bind 127.0.0.1 --directory rendered
+python3 -m http.server 4831 --bind 127.0.0.1 --directory docs
 ```
 
 Open http://127.0.0.1:4831/kb/incidents/4471-review/ to inspect the rendered page, or `/kb/` for the index. The generated HTML includes server-rendered content and the production CSS/JavaScript assets; the cause explorer hydrates into an interactive component. No model API or production support service is called.
