@@ -1,36 +1,75 @@
 ---
 layout: runbook
-title: '#4471 · dates parse mm/dd in eu locales'
-owner: support desk
-status: known
-reviewed: 2026-09-30
+title: '#4471: two date problems merged into one ticket'
+owner: przemuh
+status: resolved
+reviewed: '2026-10-28'
+signature: przemuh
 ---
 
 <script>
   import CauseTable from '#lib/kb/CauseTable.svelte';
   import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  import ReviewSummary from '#lib/kb/ReviewSummary.svelte';
   import Callout from '#lib/kb/Callout.svelte';
 </script>
 
-Since April, people have told us their bookings land on the wrong day: a month flipped. By
-4 October the desk had **412 reports**.
+The original incident record grouped the reports as one known issue. Its rendered evidence shows two independent date problems: a shared parser problem and a booking-form hint problem.
+The counts below describe the supplied export. The subsequent engineering update reports the parser fixed and the hint issue closed without a fix because booking-v3 was retired.
 
-**Merged as one issue.** The parser reads dates month first, and our tenants write the day
-first. The fix is queued.
-
-<Callout>
-Known. One issue, one fix queued.
+<Callout kind="warn">
+Triage by tenant configuration and entry channel, then verify symptoms. Matching subject lines alone is insufficient.
 </Callout>
 
-## What was merged
+## Engineering update: 5 October
+
+- Parser: **fixed** — `fix(dates): parse dd/mm for eu locales`. [GitHub issue #1](https://github.com/przemuh/mega-dev-kb/issues/1) is completed.
+- Hint: **won’t fix** — booking-v3 form retired. [GitHub issue #2](https://github.com/przemuh/mega-dev-kb/issues/2) is not planned.
+
+These are the desk’s reported resolutions, not production changes made in this repository. The original export and its report counts remain historical evidence.
+
+## Count the reports, not export rows or intake guesses
+
+<ReviewSummary />
 
 <CauseTable ticket={4471} />
 
-## Since April
+The table describes ownership in the exported support system. The separate GitHub tickets track this review; creating them does not rewrite the export.
+
+## Problems and separate tickets
+
+### Shared parser reads month first
+
+[GitHub issue #1](https://github.com/przemuh/mega-dev-kb/issues/1) covers **379 distinct reports**.
+
+The shared parser assumes month/day even when the tenant's locale is day-first. The supplied classifier assigns app and email reports from day-first tenants here, along with form reports using booking-v2.
+
+### booking-v3 date hint conflicts with tenant locale
+
+[GitHub issue #2](https://github.com/przemuh/mega-dev-kb/issues/2) covers **33 distinct reports**.
+
+The booking-v3 form prints MM/DD/YYYY for day-first tenants, but reads the entered value using the tenant's day-first order. App and email reports from those tenants still belong to the parser group; tenant identity alone is insufficient.
+
+Ticket links and report-ID membership are recorded in the repository's evidence directory. Counts are computed from the current local data at render time.
+
+## Arrival time is different from merge time
 
 <QueueTimeline ticket={4471} />
 
-## Lessons
+The received series describes when reports reached the desk. The merged series describes when the desk put them into this ticket. The July merge spike is not the incident's onset or a sudden rise in affected users.
 
-- A big ticket is mostly one bug reported many times. Merge early, count once.
-- Write the page while the queue is still in your head.
+## Why the old triage guidance is unsafe
+
+[Decision 0001](/kb/decisions/0001-dedupe-by-subject) and the [triage page](/kb/triage/dedupe) were last reviewed in June 2024. Their rendered stale banners matter: accepted status does not make their subject-only rule current.
+
+<DedupeExplorer />
+
+The explorer shows that identical subjects can describe different causes, and different subjects can describe the same cause. Unknown tenants require investigation.
+
+## Evidence and refresh procedure
+
+The analysis uses `uniqueById`, `groupByCause`, `causeOf`, and the tenant directory from this export. When the desk supplies an update, recompute report membership, update the corresponding GitHub issues, and rebuild this page.
+
+<RenderStamp {signature} />
